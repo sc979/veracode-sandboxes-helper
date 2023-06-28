@@ -4876,7 +4876,7 @@ const crypto_1 = __nccwpck_require__(6417);
 const preFix = "VERACODE-HMAC-SHA-256";
 const verStr = "vcode_request_version_1";
 const alg = 'sha256';
-const host = "api.veracode.com";
+const host = "api.veracode.eu";
 const hmac256 = (data, key, format) => {
     var hash = (0, crypto_1.createHmac)(alg, key).update(data);
     // no format = Buffer / byte array
