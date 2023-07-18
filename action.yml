@@ -27,9 +27,9 @@ inputs:
     required: false
     default: "0"
   european-region:
-    description: 'For platform using .eu'
+    description: 'For platforms using .eu'
     required: false
-    default: false
+    default: "false"
 runs:
   using: 'node12'
   main: 'dist/index.js'
