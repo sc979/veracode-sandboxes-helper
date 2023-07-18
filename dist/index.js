@@ -4622,7 +4622,8 @@ try {
         sandboxName: core.getInput('sandbox-name', { trimWhitespace: true }),
         cleanAmount: Number.parseInt(core.getInput('clean-amount')),
         deleteOnPromote: core.getBooleanInput('delete-on-promote') || false,
-        cleanModifiedBefore: parseInt(core.getInput('clean-modified-before', { trimWhitespace: true }) || '0')
+        cleanModifiedBefore: parseInt(core.getInput('clean-modified-before', { trimWhitespace: true }) || '0'),
+        europeanRegion: core.getBooleanInput('european-region') || false
     };
     if (o.activity !== 'clean' && o.sandboxName.length === 0) {
         let message = `Need Sandbox name to execute action: ${o.activity}`;
@@ -4873,10 +4874,15 @@ exports.SandboxAPIProcessor = SandboxAPIProcessor;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generateHeader = exports.getHost = void 0;
 const crypto_1 = __nccwpck_require__(6417);
+const core = __importStar(__nccwpck_require__(2186));
 const preFix = "VERACODE-HMAC-SHA-256";
 const verStr = "vcode_request_version_1";
 const alg = 'sha256';
-const host = "api.veracode.eu";
+if (core.getBooleanInput('european-region') == true) {
+    const host = "api.veracode.eu";
+} else {
+    const host = "api.veracode.com";
+}
 const hmac256 = (data, key, format) => {
     var hash = (0, crypto_1.createHmac)(alg, key).update(data);
     // no format = Buffer / byte array
@@ -4942,6 +4948,7 @@ function run(opt, msgFunc) {
     const sandboxName = opt.sandboxName;
     const amount = opt.cleanAmount;
     const modifiedBefore = new Date();
+    const euRegion = opt.europeanRegion;
     modifiedBefore.setDate(modifiedBefore.getDate() - opt.cleanModifiedBefore);
     switch (action) {
         case 'clean':
