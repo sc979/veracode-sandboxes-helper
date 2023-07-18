@@ -4,5 +4,6 @@ export interface Options {
     sandboxName: string,
     cleanAmount: number,
     deleteOnPromote: boolean,
-    cleanModifiedBefore: number
+    cleanModifiedBefore: number,
+    europeanRegion: boolean
 }
