@@ -4,7 +4,7 @@ const preFix = "VERACODE-HMAC-SHA-256";
 const verStr = "vcode_request_version_1";
 const alg = 'sha256';
 
-const host = "api.²";
+const host = "api.veracode.eu";
 
 const hmac256 = (data:BinaryLike, key: BinaryLike, format?: BinaryToTextEncoding ) => {
 	var hash = createHmac(alg, key).update(data);
