@@ -26,10 +26,6 @@ inputs:
     description: 'The number of days which the sandbox had no activity'
     required: false
     default: "0"
-  european-region:
-    description: 'For platforms using .eu'
-    required: false
-    default: "false"
 runs:
   using: 'node16'
   main: 'dist/index.js'
